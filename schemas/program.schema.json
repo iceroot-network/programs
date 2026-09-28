@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/iceroot-network/programs/schemas/program.schema.json",
+  "title": "program",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "example",
+    "id",
+    "title",
+    "pool",
+    "rules",
+    "budget",
+    "yearly_cap",
+    "status",
+    "bounty"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "example": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[A-Z]{3,6}(?![\\s\\S])"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "pool": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[a-z][a-z-]+(?![\\s\\S])"
+    },
+    "rules": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^https://[^\\s]+(?![\\s\\S])"
+    },
+    "budget": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^(0|[1-9][0-9]{0,39})(?![\\s\\S])"
+    },
+    "yearly_cap": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "^(0|[1-9][0-9]{0,39})(?![\\s\\S])"
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "open",
+        "paused",
+        "closed"
+      ]
+    },
+    "bounty": {
+      "type": "boolean"
+    }
+  }
+}

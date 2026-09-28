@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "organization",
+    "repository",
+    "mainnet_at",
+    "binding_deadline",
+    "maintainer_ids",
+    "team_ids",
+    "pools"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "organization": {
+      "const": "iceroot-network"
+    },
+    "repository": {
+      "const": "iceroot-network/programs"
+    },
+    "mainnet_at": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "format": "date-time"
+        }
+      ]
+    },
+    "binding_deadline": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "format": "date-time"
+        }
+      ]
+    },
+    "maintainer_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "minItems": 0,
+      "maxItems": 100000,
+      "uniqueItems": true
+    },
+    "team_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "minItems": 0,
+      "maxItems": 100000,
+      "uniqueItems": true
+    },
+    "pools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "allocation",
+          "address",
+          "bounty_yearly_cap"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^[a-z][a-z-]+(?![\\s\\S])"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "allocation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^[1-9][0-9]{0,39}(?![\\s\\S])"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "^(ice1[023456789acdefghjklmnpqrstuvwxyz]{58}|example-[a-z0-9-]+)(?![\\s\\S])"
+              }
+            ]
+          },
+          "bounty_yearly_cap": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000,
+                "pattern": "^(0|[1-9][0-9]{0,39})(?![\\s\\S])"
+              }
+            ]
+          }
+        }
+      },
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "id": "DEV-0002",
+  "program": "DEV",
+  "title": "Example accepted contribution",
+  "github_user_id": 9999999999,
+  "amount": "250000000000000000000",
+  "earned_at": "2030-01-09T00:00:00Z",
+  "budget_period": "pre-mainnet",
+  "status": "bound",
+  "related_party": true,
+  "relationship": "Example project affiliated with the team",
+  "evidence": [
+    "https://example.com/contribution/2"
+  ],
+  "binding": "LINK-9999999999-0001",
+  "payment": {
+    "pool_address": "example-developer-pool",
+    "recipients": [
+      {
+        "address": "example-mainnet-account",
+        "amount": "250000000000000000000"
+      }
+    ]
+  },
+  "fingerprint": "15ab768f14bded051f2ea31433310126118aec12a28c706007374d8bfa9ba5b7",
+  "memo": "iceroot:pay:v1 DEV-0002 15ab768f14bded051f2ea31433310126118aec12a28c706007374d8bfa9ba5b7",
+  "approval": {
+    "pull_request": "https://example.com/approval/2",
+    "at": "2030-01-09T00:00:00Z"
+  },
+  "receipt": null
+}

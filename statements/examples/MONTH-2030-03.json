@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "id": "MONTH-2030-03",
+  "month": "2030-03",
+  "prepared_at": "2030-04-01T00:00:00Z",
+  "status": "proposed",
+  "approval": null,
+  "transactions": [
+    {
+      "entry": "DEV-0001",
+      "pool": "developer",
+      "payment": {
+        "pool_address": "example-developer-pool",
+        "recipients": [
+          {
+            "address": "example-mainnet-account",
+            "amount": "250000000000000000000"
+          }
+        ]
+      },
+      "fingerprint": "c2c455f0b9473262c2d0b15508b06a356a384d8ba72eac27a1cfd7294f3e0dc6",
+      "memo": "iceroot:pay:v1 DEV-0001 c2c455f0b9473262c2d0b15508b06a356a384d8ba72eac27a1cfd7294f3e0dc6",
+      "amount": "250000000000000000000",
+      "related_party": true
+    }
+  ],
+  "earned_entries": [
+    "DEV-0001"
+  ],
+  "credit_only": []
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "id": "DEV-0001",
+  "entry": "DEV-0001",
+  "source": "https://example.com/contribution/1",
+  "github_user_id": 9999999999,
+  "kind": "contribution",
+  "rating": "tier-3",
+  "amount": "250000000000000000000",
+  "status": "accepted",
+  "claim_url": "https://example.com/claim",
+  "rating_evidence": "https://example.com/rating",
+  "related_party": true,
+  "relationship": "Example project affiliated with the team",
+  "duplicate_of": null,
+  "advisory": null,
+  "recorded_at": "2030-03-02T00:00:00Z"
+}

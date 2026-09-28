@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "example": false,
+  "id": "BUG",
+  "title": "Confirmed bug reports",
+  "pool": "security",
+  "rules": "https://github.com/iceroot-network/programs/blob/prod/README.md#bounty-program",
+  "budget": "30000000000000000000000000",
+  "yearly_cap": "750000000000000000000000",
+  "status": "open",
+  "bounty": true
+}

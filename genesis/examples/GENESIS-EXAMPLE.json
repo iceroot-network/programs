@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "id": "GENESIS-EXAMPLE",
+  "status": "draft",
+  "cutoff": "2030-02-20T00:00:00Z",
+  "credits": [
+    {
+      "entry": "DEV-0002",
+      "pool": "developer",
+      "recipients": [
+        {
+          "address": "example-mainnet-account",
+          "amount": "250000000000000000000"
+        }
+      ],
+      "amount": "250000000000000000000",
+      "fingerprint": "15ab768f14bded051f2ea31433310126118aec12a28c706007374d8bfa9ba5b7"
+    }
+  ],
+  "sha256": "ec2738dd68cbf25dc1b777561c86990d92c5f92c3efdde7e57f768808dc19133"
+}

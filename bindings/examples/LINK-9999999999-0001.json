@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "example": true,
+  "id": "LINK-9999999999-0001",
+  "github_user_id": 9999999999,
+  "previous": null,
+  "posted_at": "2030-01-01T00:00:00Z",
+  "effective_at": "2030-01-08T00:00:00Z",
+  "post_url": "https://example.com/link",
+  "post_author_id": 9999999999,
+  "testnet_address": "example-testnet-account",
+  "message": "IceRoot GitHub link v1\nGitHub user id: 9999999999\nAccount: example-testnet-account\nDate: 2030-01-01T00:00:00Z",
+  "public_key": "example-public-key",
+  "signature": "example-signature",
+  "status": "verified",
+  "verification": {
+    "evidence": "https://example.com/verification",
+    "at": "2030-01-02T00:00:00Z"
+  },
+  "mainnet": {
+    "address": "example-mainnet-account",
+    "transaction_id": "1111111111111111111111111111111111111111111111111111111111111111",
+    "at": "2030-01-08T00:00:00Z",
+    "memo": "iceroot:bind:v1 example-mainnet-account",
+    "evidence": "https://example.com/binding-transaction"
+  },
+  "signed_at": "2030-01-01T00:00:00Z",
+  "revoked_at": null
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "organization": "iceroot-network",
+  "repository": "iceroot-network/programs",
+  "mainnet_at": "2030-03-01T00:00:00Z",
+  "binding_deadline": "2030-02-20T00:00:00Z",
+  "maintainer_ids": [],
+  "team_ids": [],
+  "pools": [
+    {
+      "id": "security",
+      "label": "Security and bug bounty pool",
+      "allocation": "30000000000000000000000000",
+      "address": "example-security-pool",
+      "bounty_yearly_cap": "750000000000000000000000"
+    },
+    {
+      "id": "developer",
+      "label": "Developer ecosystem pool",
+      "allocation": "15000000000000000000000000",
+      "address": "example-developer-pool",
+      "bounty_yearly_cap": "375000000000000000000000"
+    },
+    {
+      "id": "campaigns",
+      "label": "Ecosystem campaigns pool",
+      "allocation": "10000000000000000000000000",
+      "address": "example-campaigns-pool",
+      "bounty_yearly_cap": null
+    },
+    {
+      "id": "reserve",
+      "label": "Long-term reserve pool",
+      "allocation": "10000000000000000000000000",
+      "address": "example-reserve-pool",
+      "bounty_yearly_cap": null
+    },
+    {
+      "id": "community",
+      "label": "Community and ambassadors pool",
+      "allocation": "5000000000000000000000000",
+      "address": "example-community-pool",
+      "bounty_yearly_cap": null
+    }
+  ]
+}

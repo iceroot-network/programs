@@ -1,0 +1,29 @@
+name: Validate records
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Validate records and examples
+        run: |
+          python3 scripts/validate.py
+          python3 scripts/validate.py --examples
+          python3 -m unittest discover -s tests -v
+      - name: Check retained ids and settled history
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -n "$BASE" ] && [ "$BASE" != 0000000000000000000000000000000000000000 ]; then
+            python3 scripts/validate.py --base "$BASE"
+          fi

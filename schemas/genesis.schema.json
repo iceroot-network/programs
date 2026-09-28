@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/iceroot-network/programs/schemas/genesis.schema.json",
+  "title": "genesis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "example",
+    "id",
+    "status",
+    "cutoff",
+    "credits",
+    "sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "example": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^GENESIS-[A-Z0-9-]+(?![\\s\\S])"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "frozen"
+      ]
+    },
+    "cutoff": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entry",
+          "pool",
+          "recipients",
+          "amount",
+          "fingerprint"
+        ],
+        "properties": {
+          "entry": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^[A-Z]{3,6}-[0-9]{4,}(?![\\s\\S])"
+          },
+          "pool": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "recipients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "address",
+                "amount"
+              ],
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000,
+                  "pattern": "^(ice1[023456789acdefghjklmnpqrstuvwxyz]{58}|example-[a-z0-9-]+)(?![\\s\\S])"
+                },
+                "amount": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000,
+                  "pattern": "^[1-9][0-9]{0,39}(?![\\s\\S])"
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 256,
+            "uniqueItems": true
+          },
+          "amount": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^[1-9][0-9]{0,39}(?![\\s\\S])"
+          },
+          "fingerprint": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 100000,
+      "uniqueItems": true
+    },
+    "sha256": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+    }
+  }
+}

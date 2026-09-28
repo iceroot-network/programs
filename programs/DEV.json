@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "example": false,
+  "id": "DEV",
+  "title": "Contribution rewards",
+  "pool": "developer",
+  "rules": "https://github.com/iceroot-network/programs/blob/prod/README.md#bounty-program",
+  "budget": "15000000000000000000000000",
+  "yearly_cap": "375000000000000000000000",
+  "status": "open",
+  "bounty": true
+}

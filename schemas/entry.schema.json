@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/iceroot-network/programs/schemas/entry.schema.json",
+  "title": "entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "example",
+    "id",
+    "program",
+    "title",
+    "github_user_id",
+    "amount",
+    "earned_at",
+    "budget_period",
+    "status",
+    "related_party",
+    "relationship",
+    "evidence",
+    "binding",
+    "payment",
+    "fingerprint",
+    "memo",
+    "approval",
+    "receipt"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "example": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[A-Z]{3,6}-[0-9]{4,}(?![\\s\\S])"
+    },
+    "program": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[A-Z]{3,6}(?![\\s\\S])"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "github_user_id": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        }
+      ]
+    },
+    "amount": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[1-9][0-9]{0,39}(?![\\s\\S])"
+    },
+    "earned_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "budget_period": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "^(pre-mainnet|year-[1-9][0-9]*)(?![\\s\\S])"
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "earned",
+        "bound",
+        "approved",
+        "paid",
+        "credited",
+        "queued",
+        "cancelled"
+      ]
+    },
+    "related_party": {
+      "type": "boolean"
+    },
+    "relationship": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000,
+        "pattern": "^https://[^\\s]+(?![\\s\\S])"
+      },
+      "minItems": 1,
+      "maxItems": 100000,
+      "uniqueItems": true
+    },
+    "binding": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "^LINK-[0-9]+-[0-9]{4,}(?![\\s\\S])"
+        }
+      ]
+    },
+    "payment": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pool_address",
+            "recipients"
+          ],
+          "properties": {
+            "pool_address": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^(ice1[023456789acdefghjklmnpqrstuvwxyz]{58}|example-[a-z0-9-]+)(?![\\s\\S])"
+            },
+            "recipients": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "address",
+                  "amount"
+                ],
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "pattern": "^(ice1[023456789acdefghjklmnpqrstuvwxyz]{58}|example-[a-z0-9-]+)(?![\\s\\S])"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000,
+                    "pattern": "^[1-9][0-9]{0,39}(?![\\s\\S])"
+                  }
+                }
+              },
+              "minItems": 1,
+              "maxItems": 256,
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "fingerprint": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+        }
+      ]
+    },
+    "memo": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "^iceroot:pay:v1 [A-Z]{3,6}-[0-9]{4,} [0-9a-f]{64}(?![\\s\\S])"
+        }
+      ]
+    },
+    "approval": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pull_request",
+            "at"
+          ],
+          "properties": {
+            "pull_request": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^https://[^\\s]+(?![\\s\\S])"
+            },
+            "at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      ]
+    },
+    "receipt": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "transaction_id",
+            "height",
+            "confirmed_at",
+            "memo"
+          ],
+          "properties": {
+            "transaction_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "confirmed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "memo": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          }
+        }
+      ]
+    }
+  }
+}
