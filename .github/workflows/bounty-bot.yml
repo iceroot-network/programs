@@ -1,0 +1,63 @@
+name: Bounty records
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+    - cron: '37 0 1 * *'
+  workflow_dispatch:
+    inputs:
+      month:
+        description: 'Closed statement month (YYYY-MM), or leave empty for records only'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bounty-record-updates
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check trusted scripts and records
+        run: |
+          python3 scripts/validate.py
+          python3 -m unittest discover -s tests -v
+      - name: Read activity and propose records
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PROGRAMS_BOT_TOKEN: ${{ secrets.PROGRAMS_BOT_TOKEN }}
+          PROGRAMS_COMMIT_NAME: ${{ vars.PROGRAMS_COMMIT_NAME }}
+          PROGRAMS_COMMIT_EMAIL: ${{ vars.PROGRAMS_COMMIT_EMAIL }}
+          MONTH: ${{ inputs.month }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          python3 - <<'PY'
+          import datetime
+          import os
+          import subprocess
+          command = ['python3', 'scripts/bot.py', '--write', '--notify']
+          month = os.environ.get('MONTH', '')
+          if os.environ.get('SCHEDULE') == '37 0 1 * *':
+              today = datetime.datetime.now(datetime.timezone.utc).date()
+              month = (today.replace(day=1) - datetime.timedelta(days=1)).strftime('%Y-%m')
+          if month:
+              command += ['--month', month]
+          subprocess.run(command, check=True)
+          PY
+      - name: Keep proposed data and review notes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: bounty-review
+          path: bot-output/
+          if-no-files-found: ignore
+          retention-days: 14
